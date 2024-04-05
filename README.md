@@ -50,7 +50,7 @@ shippings（発送情報）
 | street_address          | string     | null: false              |                            | 
 | building_name           | string     | null: true               |                            | 
 | phone_number            | string     | null: false              |                            | 
-| purchase                | references | null: false, foreign key | references purchases Table |
+| purchase                | references | null: false, foreign key | references purchases Table | 
 
 
 
