@@ -24,28 +24,26 @@ itemsテーブル（商品情報）
 | item_category_id            | integer     | null: false              |             | 
 | item_sales_status_id        | integer     | null: false              |             | 
 | item_shipping_fee_status_id | integer     | null: false              |             | 
-| item_prefecture_id          | integer     | null: false              |             | 
+| prefecture_id               | integer     | null: false              |             | 
 | item_scheduled_delivery_id  | integer     | null: false              |             | 
 | item_price                  | integer     | null: false              |             | 
 | user                        | references  | null: false, foreign key |             | 
 
 purchasesテーブル（購入情報）
+  belongs_to :user
   belongs_to :item
-  has_one     :shipping
+  has_one    :shipping
 | Column   | Type       | Option                   | Description            | 
 | -------- | ---------- | ------------------------ | ---------------------- | 
 | user     | references | null: false, foreign key | references items Table | 
 | item     | references | null: false, foreign key | references items Table | 
 
-shippings（発送情報）
-  belongs_to :item
+shippingsテーブル（発送情報）
+  belongs_to :purchase
 | Column                  | Type       | Option                   | Description                | 
 | ----------------------- | ---------- | ------------------------ | -------------------------- | 
-| tracking_number         | string     | null: false              |                            | 
-| carrier                 | string     | null: false              |                            | 
-| estimated_delivery_date | string     | null: false              |                            | 
 | postal_code             | string     | null: false              |                            | 
-| prefecture              | string     | null: false              |                            | 
+| prefecture_id           | integer    | null: false              |                            | 
 | city                    | string     | null: false              |                            | 
 | street_address          | string     | null: false              |                            | 
 | building_name           | string     | null: true               |                            | 
