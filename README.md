@@ -5,7 +5,7 @@ usersテーブル
 | ---------------------- | ------ | -------------------------- | 
 | nickname               | string | null: false                | 
 | email                  | string | null: false, unique: true  | 
-| password               | string | null: false                |  
+| encrypted_password     | string | null: false                |  
 | last_name              | string | null: false                | 
 | first_name             | string | null: false                | 
 | last_name_kana         | string | null: false                | 
@@ -34,7 +34,7 @@ purchasesテーブル（購入情報）
   has_one    :shipping
 | Column   | Type       | Option                         | Description            | 
 | -------- | ---------- | ------------------------------ | ---------------------- | 
-| user     | references | null: false, foreign_key: true | references items Table | 
+| user     | references | null: false, foreign_key: true | references users Table | 
 | item     | references | null: false, foreign_key: true | references items Table | 
 
 shippingsテーブル（発送情報）
