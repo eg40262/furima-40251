@@ -13,10 +13,10 @@ RSpec.describe User, type: :model do
 
     context '新規登録がうまくいかないとき' do
       it 'emailが一意でないと登録できないこと' do
-         @user.save
-         another_user = FactoryBot.build(:user, email: @user.email)
-         another_user.valid?
-         expect(another_user.errors.full_messages).to include('Email has already been taken')
+        @user.save
+        another_user = FactoryBot.build(:user, email: @user.email)
+        another_user.valid?
+        expect(another_user.errors.full_messages).to include('Email has already been taken')
       end
 
       it 'emailに@が含まれていないと登録できないこと' do
@@ -47,7 +47,7 @@ RSpec.describe User, type: :model do
       it 'first_nameが空では登録できないこと' do
         @user.first_name = nil
         @user.valid?
-       expect(@user.errors.full_messages).to include("First name can't be blank")
+        expect(@user.errors.full_messages).to include("First name can't be blank")
       end
 
       it 'last_name_kanaが空では登録できないこと' do
