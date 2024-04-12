@@ -21,6 +21,6 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :description, :price) # ここにはItemモデルの属性を追加してください
+    params.require(:item).permit(:name, :description, :price, :image) 
   end
 end
