@@ -39,15 +39,15 @@ purchasesテーブル（購入情報）
 
 shippingsテーブル（発送情報）
   belongs_to :purchase
-| Column                  | Type       | Option                         | Description                | 
-| ----------------------- | ---------- | ------------------------------ | -------------------------- | 
-| postal_code             | string     | null: false                    |                            | 
-| prefecture_id           | integer    | null: false                    |                            | 
-| city                    | string     | null: false                    |                            | 
-| street_address          | string     | null: false                    |                            | 
-| building_name           | string     | null: true                     |                            | 
-| phone_number            | string     | null: false                    |                            | 
-| purchase                | references | null: false, foreign_key: true | references purchases Table | 
+| Column                  | Type       | Option                         |Description                | 
+| ----------------------- | ---------- | ------------------------------ |-------------------------- | 
+| postal_code             | string     | null:false                    |                            | 
+| prefecture_id           | integer    | null:false                    |                            | 
+| city                    | string     | null:false                    |                            | 
+| street_address          | string     | null:false                    |                            | 
+| building_name           | string     |null:true                      |                            | 
+| phone_number            | string     |null:false                     |                            | 
+| purchase                | references | null: false, foreign_key: true | references purchasesTable | 
 
 
 
