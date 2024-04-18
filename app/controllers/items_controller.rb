@@ -30,9 +30,9 @@ class ItemsController < ApplicationController
   def update
     @item = Item.find(params[:id])
     if @item.update(item_params)
-      redirect_to item_path(@item)  # アイテムの詳細ページにリダイレクト
+      redirect_to item_path(@item)  
     else
-      render :edit  # エラーがあった場合は再び編集ページを表示
+      render :edit, status: :unprocessable_entity
     end
   end
 
