@@ -3,6 +3,7 @@ class OrdersController < ApplicationController
   before_action :set_item, only: [:index, :create]
 
   def index
+    gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
     @purchase_shipping = PurchaseShipping.new
   end
 
@@ -28,7 +29,12 @@ class OrdersController < ApplicationController
   end
 
   def pay_item
-    # ここで決済処理に必要なパラメータを扱います。
+    Payjp.api_key =  ENV["PAYJP_SECRET_KEY"]
+    Payjp::Charge.create(
+      amount:  @item.price,
+      card: purchase_params[:token],
+      currency: 'jpy'
+    )
   end
 end
 
