@@ -1,6 +1,9 @@
 class OrdersController < ApplicationController
-
   before_action :set_item, only: [:index, :create]
+  before_action :authenticate_user!, only: [:index, :create]
+  before_action :redirect_if_purchased, only: [:index, :create]
+  before_action :redirect_if_own_item, only: [:index, :create]
+
 
   def index
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
@@ -14,6 +17,7 @@ class OrdersController < ApplicationController
       @purchase_shipping.save
       redirect_to root_path
     else
+      gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
       render :index, status: :unprocessable_entity
     end
   end
@@ -24,8 +28,16 @@ class OrdersController < ApplicationController
     @item = Item.find(params[:item_id])
   end
 
+  def redirect_if_purchased
+    redirect_to root_path if @item.purchase.present?
+  end
+
+  def redirect_if_own_item
+    redirect_to root_path if current_user.id == @item.user.id
+  end
+
   def purchase_params
-    params.require(:purchase_shipping).permit(:postal_code, :prefecture_id, :city, :street_address, :building_name, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id])
+    params.require(:purchase_shipping).permit(:postal_code, :prefecture_id, :city, :street_address, :building_name, :phone_number).merge(token: params[:token], user_id: current_user.id, item_id: params[:item_id])
   end
 
   def pay_item
@@ -37,20 +49,3 @@ class OrdersController < ApplicationController
     )
   end
 end
-
-# class OrdersController < ApplicationController
-
-  # def index
-    # @item = Item.find(params[:item_id])
-  # end
-
-  # def create
-
-  # end
-
-  # private
-
-  # def メソッド名
-    # params.permit(指定のカラムを記述する)
-  # end
-# end
