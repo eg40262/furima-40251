@@ -9,7 +9,7 @@ class Item < ApplicationRecord
   belongs_to :user
   has_one_attached :image
   has_one :purchase, dependent: :destroy
-
+  
   validates :name, presence: true
   validates :info, presence: true
   validates :category_id, presence: true, numericality: { other_than: 1, message: "can't be 1" }
