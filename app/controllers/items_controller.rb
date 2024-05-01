@@ -48,7 +48,6 @@ class ItemsController < ApplicationController
 
   def check_user
     return unless current_user.id != @item.user_id
-
     redirect_to root_path
   end
 
