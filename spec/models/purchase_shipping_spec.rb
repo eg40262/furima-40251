@@ -12,6 +12,11 @@ RSpec.describe PurchaseShipping, type: :model do
       it 'tokenと配送先入力があれば保存ができる' do
         expect(@purchase_shipping).to be_valid
       end
+
+      it 'building_nameが空でも保存ができる' do
+        @purchase_shipping.building_name = nil
+        expect(@purchase_shipping).to be_valid
+      end
     end
 
     context '内容に問題がある場合' do
