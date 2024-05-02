@@ -80,6 +80,12 @@ RSpec.describe PurchaseShipping, type: :model do
         expect(@purchase_shipping.errors.full_messages).to include('Phone number is invalid.')
       end
 
+      it 'phone_numberが9桁以下だと保存できないこと' do
+        @purchase_shipping.phone_number = '123456789'
+        @purchase_shipping.valid?
+        expect(@purchase_shipping.errors.full_messages).to include('Phone number is invalid.')
+      end
+
       it 'user_idが空だと購入できないこと' do
         @purchase_shipping.user_id = nil
         @purchase_shipping.valid?
