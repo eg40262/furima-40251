@@ -1,4 +1,5 @@
-document.addEventListener('DOMContentLoaded', () => {
+// document.addEventListener("turbo:load", () => {
+  const price = () => {
   const priceInput = document.getElementById("item-price");
   if(priceInput) {
     priceInput.addEventListener("input", () => {
@@ -12,4 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
       profitDom.innerHTML = profitValue;
     });
   }
-});
+};
+
+
+
+window.addEventListener("turbo:load", price);
+window.addEventListener("turbo:render", price);
