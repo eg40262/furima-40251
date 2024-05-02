@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const priceInput = document.getElementById("item-price");
-  if(priceInput) { // priceInputが存在するかチェック
+  if(priceInput) {
     priceInput.addEventListener("input", () => {
       const inputValue = priceInput.value;
       const addTaxDom = document.getElementById("add-tax-price");
