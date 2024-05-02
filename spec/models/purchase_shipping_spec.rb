@@ -2,9 +2,11 @@ require 'rails_helper'
 
 RSpec.describe PurchaseShipping, type: :model do
   describe '#create' do
-    before do
-      @purchase_shipping = FactoryBot.build(:purchase_shipping)
-    end
+  before do
+    user = FactoryBot.create(:user)
+    item = FactoryBot.create(:item)
+    @purchase_shipping = FactoryBot.build(:purchase_shipping, user_id: user.id, item_id: item.id)
+  end
 
     context '内容に問題ない場合' do
       it 'tokenと配送先入力があれば保存ができる' do
